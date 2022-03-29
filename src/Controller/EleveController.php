@@ -20,4 +20,16 @@ class EleveController extends AbstractController
             'eleve' => $eleves,
         ]);
     }
+
+    /**
+     * @Route("/eleve/indexdetail{id}", name="app_detail")
+     */
+    public function indexDetail($id, EleveRepository $eleve): Response
+    {
+        $eleves = $eleve->find($id);
+        return $this->render('eleve/indexdetail.html.twig', [
+            'eleve' => $eleves,
+        ]);
+    }
+
 }
