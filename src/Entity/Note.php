@@ -23,7 +23,7 @@ class Note
     private $note;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="float")
      */
     private $coefficient;
 
@@ -61,12 +61,12 @@ class Note
         return $this;
     }
 
-    public function getCoefficient(): ?string
+    public function getCoefficient(): ?float
     {
         return $this->coefficient;
     }
 
-    public function setCoefficient(string $coefficient): self
+    public function setCoefficient(float $coefficient): self
     {
         $this->coefficient = $coefficient;
 
