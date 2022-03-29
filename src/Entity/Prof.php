@@ -32,6 +32,13 @@ class Prof
      */
     private $date_de_naissance;
 
+    /**
+     * @ORM\OneToOne(targetEntity=Classe::class, mappedBy="prof_id", cascade={"persist", "remove"})
+     */
+    private $classe;
+
+    
+
     public function getId(): ?int
     {
         return $this->id;
@@ -72,4 +79,22 @@ class Prof
 
         return $this;
     }
+
+    public function getClasse(): ?Classe
+    {
+        return $this->classe;
+    }
+
+    public function setClasse(Classe $classe): self
+    {
+        // set the owning side of the relation if necessary
+        if ($classe->getProfId() !== $this) {
+            $classe->setProfId($this);
+        }
+
+        $this->classe = $classe;
+
+        return $this;
+    }
+
 }

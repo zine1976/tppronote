@@ -17,10 +17,7 @@ class Eleve
      */
     private $id;
 
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $nom;
+    
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -31,6 +28,9 @@ class Eleve
      * @ORM\Column(type="date")
      */
     private $date_de_naissance;
+
+   
+    
 
     public function getId(): ?int
     {
@@ -72,4 +72,5 @@ class Eleve
 
         return $this;
     }
+
 }

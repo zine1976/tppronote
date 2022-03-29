@@ -27,10 +27,10 @@ class Note
      */
     private $coefficient;
 
-    /**
-     * @ORM\Column(type="date")
-     */
-    private $date;
+    
+
+
+    
 
     public function getId(): ?int
     {
@@ -72,4 +72,7 @@ class Note
 
         return $this;
     }
+
+
+    
 }
