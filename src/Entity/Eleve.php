@@ -29,6 +29,17 @@ class Eleve
      */
     private $date_de_naissance;
 
+    /**
+     * @ORM\OneToOne(targetEntity=Classe::class, inversedBy="Eleve", cascade={"persist", "remove"})
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $classe;
+
+    /**
+     * @ORM\OneToOne(targetEntity=Note::class, mappedBy="eleve", cascade={"persist", "remove"})
+     */
+    private $Note;
+
    
     
 
@@ -69,6 +80,35 @@ class Eleve
     public function setDateDeNaissance(\DateTimeInterface $date_de_naissance): self
     {
         $this->date_de_naissance = $date_de_naissance;
+
+        return $this;
+    }
+
+    public function getClasse(): ?Classe
+    {
+        return $this->classe;
+    }
+
+    public function setClasse(Classe $classe): self
+    {
+        $this->classe = $classe;
+
+        return $this;
+    }
+
+    public function getNote(): ?Note
+    {
+        return $this->Note;
+    }
+
+    public function setNote(Note $Note): self
+    {
+        // set the owning side of the relation if necessary
+        if ($Note->getEleve() !== $this) {
+            $Note->setEleve($this);
+        }
+
+        $this->Note = $Note;
 
         return $this;
     }

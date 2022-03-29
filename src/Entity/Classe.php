@@ -35,6 +35,11 @@ class Classe
      */
     private $nom;
 
+    /**
+     * @ORM\OneToOne(targetEntity=Eleve::class, mappedBy="classe", cascade={"persist", "remove"})
+     */
+    private $Eleve;
+
     
 
    
@@ -79,6 +84,23 @@ class Classe
     public function setNom(string $nom): self
     {
         $this->nom = $nom;
+
+        return $this;
+    }
+
+    public function getEleve(): ?Eleve
+    {
+        return $this->Eleve;
+    }
+
+    public function setEleve(Eleve $Eleve): self
+    {
+        // set the owning side of the relation if necessary
+        if ($Eleve->getClasse() !== $this) {
+            $Eleve->setClasse($this);
+        }
+
+        $this->Eleve = $Eleve;
 
         return $this;
     }

@@ -27,6 +27,18 @@ class Note
      */
     private $coefficient;
 
+    /**
+     * @ORM\OneToOne(targetEntity=Eleve::class, inversedBy="Note", cascade={"persist", "remove"})
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $eleve;
+
+    /**
+     * @ORM\OneToOne(targetEntity=Matiere::class, inversedBy="Note", cascade={"persist", "remove"})
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $matiere;
+
     
 
 
@@ -69,6 +81,30 @@ class Note
     public function setDate(\DateTimeInterface $date): self
     {
         $this->date = $date;
+
+        return $this;
+    }
+
+    public function getEleve(): ?Eleve
+    {
+        return $this->eleve;
+    }
+
+    public function setEleve(Eleve $eleve): self
+    {
+        $this->eleve = $eleve;
+
+        return $this;
+    }
+
+    public function getMatiere(): ?Matiere
+    {
+        return $this->matiere;
+    }
+
+    public function setMatiere(Matiere $matiere): self
+    {
+        $this->matiere = $matiere;
 
         return $this;
     }
