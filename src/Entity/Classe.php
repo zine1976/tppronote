@@ -25,7 +25,7 @@ class Classe
     private $niveau;
 
     /**
-     * @ORM\OneToOne(targetEntity=Prof::class, inversedBy="classe", cascade={"persist", "remove"})
+     * @ORM\ManyToOne(targetEntity=Prof::class, inversedBy="classe", cascade={"persist", "remove"})
      * @ORM\JoinColumn(nullable=false)
      */
     private $prof;

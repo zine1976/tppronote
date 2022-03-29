@@ -28,13 +28,13 @@ class Note
     private $coefficient;
 
     /**
-     * @ORM\OneToOne(targetEntity=Eleve::class, inversedBy="Note", cascade={"persist", "remove"})
+     * @ORM\ManyToOne(targetEntity=Eleve::class, inversedBy="Note", cascade={"persist", "remove"})
      * @ORM\JoinColumn(nullable=false)
      */
     private $eleve;
 
     /**
-     * @ORM\OneToOne(targetEntity=Matiere::class, inversedBy="Note", cascade={"persist", "remove"})
+     * @ORM\ManyToOne(targetEntity=Matiere::class, inversedBy="Note", cascade={"persist", "remove"})
      * @ORM\JoinColumn(nullable=false)
      */
     private $matiere;

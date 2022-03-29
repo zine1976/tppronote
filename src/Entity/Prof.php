@@ -33,7 +33,7 @@ class Prof
     private $date_de_naissance;
 
     /**
-     * @ORM\OneToOne(targetEntity=Classe::class, mappedBy="prof_id", cascade={"persist", "remove"})
+     * @ORM\OneToOne(targetEntity=Classe::class, mappedBy="prof", cascade={"persist", "remove"})
      */
     private $classe;
 

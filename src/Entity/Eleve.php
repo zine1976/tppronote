@@ -36,9 +36,14 @@ class Eleve
     private $classe;
 
     /**
-     * @ORM\OneToOne(targetEntity=Note::class, mappedBy="eleve", cascade={"persist", "remove"})
+     * @ORM\ManyToOne(targetEntity=Note::class, mappedBy="eleve", cascade={"persist", "remove"})
      */
     private $Note;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $nom;
 
    
     

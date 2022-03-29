@@ -23,7 +23,7 @@ class Matiere
     private $nom;
 
     /**
-     * @ORM\OneToOne(targetEntity=Note::class, mappedBy="matiere", cascade={"persist", "remove"})
+     * @ORM\ManyToMany(targetEntity=Note::class, mappedBy="matiere", cascade={"persist", "remove"})
      */
     private $Note;
 
