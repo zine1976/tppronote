@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\ProfRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -33,9 +35,19 @@ class Prof
     private $date_de_naissance;
 
     /**
-     * @ORM\OneToOne(targetEntity=Classe::class, mappedBy="prof", cascade={"persist", "remove"})
+     * @ORM\OneToMany(targetEntity=Classe::class, mappedBy="prof", cascade={"persist", "remove"})
      */
     private $classe;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Matiere::class, mappedBy="prof", orphanRemoval=true)
+     */
+    private $Matieres;
+
+    public function __construct()
+    {
+        $this->Matieres = new ArrayCollection();
+    }
 
     
 
@@ -93,6 +105,36 @@ class Prof
         }
 
         $this->classe = $classe;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Matiere>
+     */
+    public function getMatieres(): Collection
+    {
+        return $this->Matieres;
+    }
+
+    public function addMatiere(Matiere $matiere): self
+    {
+        if (!$this->Matieres->contains($matiere)) {
+            $this->Matieres[] = $matiere;
+            $matiere->setProf($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMatiere(Matiere $matiere): self
+    {
+        if ($this->Matieres->removeElement($matiere)) {
+            // set the owning side to null (unless already changed)
+            if ($matiere->getProf() === $this) {
+                $matiere->setProf(null);
+            }
+        }
 
         return $this;
     }

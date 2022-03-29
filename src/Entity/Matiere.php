@@ -27,6 +27,12 @@ class Matiere
      */
     private $Note;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Prof::class, inversedBy="Matieres")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $prof;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -57,6 +63,18 @@ class Matiere
         }
 
         $this->Note = $Note;
+
+        return $this;
+    }
+
+    public function getProf(): ?Prof
+    {
+        return $this->prof;
+    }
+
+    public function setProf(?Prof $prof): self
+    {
+        $this->prof = $prof;
 
         return $this;
     }
